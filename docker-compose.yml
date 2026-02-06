@@ -1,0 +1,15 @@
+
+services:
+  web: #Httpd
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    container_name: container_prod
+    ports: 
+      - "8080:80"
+    volumes: 
+      - volum_web:/usr/local/apache2/htdocs
+    restart: "on-failure"
+
+volumes:
+  volum_web:

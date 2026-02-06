@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Map</title>
+    <link rel="stylesheet" href="./styles/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+</head>
+<body class="body">
+    <nav>
+        <div class="navbar">
+            <img id="logo" src="./img/Logo_color.png" alt="aeiouaei">
+            <h2>FoodMap</h2>
+            <div id="divLogin">
+                <label for="">
+                    <img src="./img/imgLogin.png" id="login" alt="" class="me-2">
+                    <p>Iniciar sesion</p>
+                </label>
+            </div> 
+        </div>
+    </nav>
+    <div>
+        <div id="carouselExampleFade" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active" data-bs-interval="4000">
+                    <img src="./img/arepas_banner.jpg" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item" data-bs-interval="4000">
+                    <img src="./img/empanadas_banner.jpg" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item" data-bs-interval="4000">
+                    <img src="./img/sushi_banner.jpg" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item" data-bs-interval="4000">
+                    <img src="./img/bandeja_banner.jpg" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item" data-bs-interval="4000">
+                    <img src="./img/comida_rumana_banner.jpg" class="d-block w-100" alt="...">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="divChiva">
+        <img src="./img/chiva.png" id="chiva" alt="">
+        <img src="./img/camino.svg" id="camino" alt="">
+    </div> 
+    <div id="divCarta">
+        <div class="card mb-3 rounded-4 shadow">
+            <div class="row g-0" style="border-radius: 20px;">
+                <div class="col-md-6">
+                    <img src="./img/cena.jpg" class="imgCard rounded-start-4" alt="...">
+                </div>
+                <div class="col-md-6">
+                    <div class="card-body">
+                        <h5 class="card-title">Explora nuestra carta</h5>
+                        <p class="card-text">Entra y explora por la gran variedad cultural que hay en nuestro menú</p>
+                        <a href="#" class="btnCard">Ver carta</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="p-5">
+        <img src="./img/avion22.svg" id="avionSvg" alt="">
+        <h3 class="text-center fs-1 fw-bold my-4">Sobre nosotros</h3>
+        <div  class="row d-flex justify-content-center">
+            <div class="col-12 col-md-4 p-0 card rounded-4 mx-3 mt-4 entradas shadow-sm" id="entrada1">
+                <img src="./img/patatas.jpg" class="card-img-top" alt="...">
+                <div class="card-body pb-4">
+                    <h5 class="my-2 text-start mx-1">Nuestras patatas caseras</h5>
+                    <p class="card-text text-start mx-1 p-0 mb-4">Tenemos patatas naturales de calidad, preparadas al momento para el disfrute del cliente</p>
+                    <a href="#" class="btnCard">Ver más</a>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 p-0 card rounded-4 mx-3 mt-4 entradas shadow-sm" id="entrada2" style="width: 25rem;">
+                <img src="./img/michelada.jpg" class="card-img-top" alt="...">
+                <div class="card-body pb-4">
+                    <h5 class="my-2 text-start mx-1">Cócteles exoticos</h5>
+                    <p class="card-text text-start mx-1 p-0 mb-4">Tenemos una gran variedad de cócteles de diferentes culturas.</p>
+                    <a href="#" class="btnCard">Ver más</a>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 p-0 card rounded-4 mx-3 mt-4 entradas shadow-sm" id="entrada3" style="width: 25rem;">
+                <img src="./img/pexels-jiri-ikonomidis-164966727-32651700.jpg" class="card-img-top" alt="...">
+                <div class="card-body pb-4">
+                    <h5 class="my-2 text-start mx-1">Nuestro proveedores</h5>
+                    <p class="card-text text-start mx-1 p-0 mb-4">Contamos con proveedores los cuales nos brindan productos de calidad</p>
+                    <a href="#" class="btnCard">Ver más</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <img src="./img/LogoBlanco_footer.svg" alt="">
+        <div>
+            <div class="divsFooter"><p>Siguenós</p></div>
+            <div class="divsFooter">
+                <img src="./img/logoInsta.png" class="redesSociales" alt="">
+                <img src="./img/logoFacebook.png" class="redesSociales" alt="">
+                <img src="./img/logoX.png" class="redesSociales" alt="">
+            </div>
+            <div class="divsFooter"><p>Avinguda de Montilivi, 125, 17003 Girona</p></div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
+    <script src="./javascript/index.js"></script>
+</body>
+</html>

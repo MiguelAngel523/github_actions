@@ -1,0 +1,191 @@
+.body {
+    background-color: #FDF8EE;
+}
+
+** {
+    font-family: "Inter", sans-serif;
+}
+
+nav div h2{
+    font-size: 3.5em;
+    font-weight: 700;
+    color: #3C2714;
+}
+
+nav {
+    padding: 1vh 2vw;
+    background-color: #ffffff;
+}
+
+#divLogin label{
+    display: flex;
+    justify-content: space-between;
+    padding: 1vh 1vw;
+    background-color: #D7F595;
+    color: #3C2714;
+    border: solid #3C2714;
+    border-radius: 1em;
+    font-weight: 700;
+}
+
+#divLogin label p{
+    color: #000;
+    margin: 0;
+}
+
+#divLogin label:hover{
+    background-color: #CFF6FD;
+}
+
+#logo{
+    width: 6vw;
+    min-width: 70px;
+}
+
+#login{
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+footer{
+    background-color: #000;
+    display: flex;
+    background-repeat: no-repeat;
+    background-size: contain;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+footer > div {
+    padding: 2vh 1vw;
+}
+footer > img {
+    width: 35vw
+}
+
+footer > div > div > p{
+    font-size: 2em;
+    font-weight: 600;
+    color: #fff;
+    
+}
+
+.redesSociales{
+    width: 4rem;
+    margin-right: 4vw;
+    margin-left: 2vw;
+}
+
+footer > div+div+div p{
+    font-size: 1.5em;
+    font-weight: 600;
+    color: #fff;
+}
+
+.divsFooter{
+    margin-bottom: 5vh;
+    text-align: center;
+}
+
+#divCarta{
+    padding: 5vh 20vw;
+}
+
+.card-body{
+    text-align: center;
+}
+
+.card-body h5{
+    font-size: 2.5em;
+    color: #3C2714;
+    margin: 5vh 0;
+}
+
+.card-body p{
+    font-size: 1.2em;
+    color: #3C2714;
+    margin: 2vh 0;
+    padding: 2vh 5vw;
+    font-weight: 700;
+}
+
+.btnCard{
+    padding: 1vh 2.5vw;
+    background-color: #D7F595;
+    color: #3C2714;
+    border: solid #3C2714;
+    border-radius: 1em;
+    margin-top: 5vh;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.btnCard:hover {
+    background-color: #3C2714;
+    color: #D7F595;
+    border: solid #D7F595;
+}
+
+.imgCard{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#avionSvg{
+    width: 50vw;
+    min-width: 200px;
+}
+
+.entradas > img {
+    height: 35vh;
+}
+
+.divEntrada{
+    align-items: center;
+}
+
+#chiva{
+    width: 10vw;
+    position: relative;
+    top: 85px;
+    left: 1500px;
+}
+
+#camino{
+    width: 99vw;
+    position: relative;
+    bottom: 50px;
+}
+
+.divChiva{
+    overflow: hidden;
+}
+
+#entrada1{
+    width: 25rem;
+}
+
+#entrada1:hover{
+    transform: scale(1.04);
+}
+
+#entrada2{
+    width: 25rem;
+}
+
+#entrada2:hover{
+    transform: scale(1.04);
+}
+#entrada3{
+    width: 25rem;
+}
+
+#entrada3:hover{
+    transform: scale(1.04);
+}
+
+@media (max-width: 1200px){
+.divChiva{
+    display: none;
+}
+}

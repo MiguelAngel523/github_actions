@@ -1,0 +1,10 @@
+FROM httpd:2.4.65
+
+WORKDIR /usr/local/apache2/htdocs
+
+COPY ./FoodMap /usr/local/apache2/htdocs
+
+VOLUME ["/usr/local/apache2/htdocs"]
+
+EXPOSE 80
+
