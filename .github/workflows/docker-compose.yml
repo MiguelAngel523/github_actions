@@ -27,7 +27,7 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run docker compose
         run: |
-            FILE= ../Dockerfile.prod
+            FILE= ../../Dockerfile.prod
             docker-compose -f docker/dev/docker-compose.yml up -d
 
       # Runs a set of commands using the runners shell
