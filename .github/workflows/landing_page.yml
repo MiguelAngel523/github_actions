@@ -1,0 +1,57 @@
+name: deploy landingPage to S3 CloudFront main and develop
+# He tractat de fer un desplegament el més genèric possible per a que serveixi tant per a la branca de desenvolupament com per a la de producció,
+# només canviant les variables d'entorn segons la branca. Així evitem tenir dos workflows ja que son pràcticament idèntics i mantenim tot més net.
+
+on:
+  push:
+    branches: ["main", "develop"] # Es dispara en pujar codi a qualsevol de les dues branques (No seria el desitjat segons gitflow però així es pot provar el workflow a develop abans de fer el merge a main)
+  pull_request:
+    branches: ["develop"] # També quan es vol integrar codi a develop des d'una branca de feature
+  workflow_dispatch: # Permet l'execució manual des d'un "boto" 'Actions'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest # Utilitzem una màquina virtual Linux gestionada per GitHub
+
+    # DEFINICIÓ DE VARIABLES D'ENTORN DINÀMIQUES MIG "INVENT" PER PODER USAR EL MATEIX WORKFLOW PER A DEV I PROD
+    # Ací fem la "màgia" per decidir a quin bucket anem segons la branca actual
+    env:
+      # amb github.ref_name podem saber de quia branca s'ha disparat l'event
+      # Ternària: Si la branca és 'main', usa el bucket de PROD; si no, el de DEV
+      CURRENT_S3_BUCKET: ${{ github.ref == 'refs/heads/main' && vars.S3_BUCKET_NAME_PROD || vars.S3_BUCKET_NAME_DEV }}
+      # El mateix per a la distribució de CloudFront (he posat les dues formes que he trobat per detectar la branca per a veure diferents formes i ja trieu vosaltres)
+      #CURRENT_CF_ID: ${{ github.ref_name == 'main' && vars.CLOUDFRONT_ID_PROD || vars.CLOUDFRONT_ID_DEV }}
+      #AWS_REGION: ${{ vars.AWS_REGION }}
+
+    steps:
+      # 1. Copiem el codi del repositori a la màquina virtual del runner
+      - name: Checkout del codi
+        uses: actions/checkout@v4 # en alguns deploys utilitzava v6 però he llegit que v4 es el més estable i compatible...
+
+      # 2. Configurem les credencials d'AWS (Molt important actualitzar-les cada cop que obrim el Lab d'Academy)
+      # Utilitzem aquesta action oficial AWS ja feta per conectar-nos a AWS utilitzant la seva API
+      # Aquesta action està incompleta, completa els apartats necessaris
+      - name: Configure AWS credentials
+        uses:
+          aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      # 3. Pugem els fitxers a S3
+      # Crea una action propia utlitzant comandes AWS cli per sincronitzar el bucket S3.
+      # El flag --delete esborra al S3 el que ja no existeix localment per mantenir-ho net
+      # Evita pujar .git i .gitignore
+      - name: Sync files to S3
+        run: |
+          aws s3 sync ./FoodMap s3://${{ CURRENT_S3_BUCKET }} --delete
+          
+
+      # 4. Invalidem la memòria cau de CloudFront (Només si la variable té valor)
+      # Comprovem si la variable env.CURRENT_CF_ID no està buida abans d'executar la comanda d'invalidació, així evitem errors si per alguna raó no s'ha configurat correctament el CloudFront id.
+      # Utilitza la action amb AWS cli per invalidar la cache s3 i que CloudFront serveixi la web.
+      - name: Invalidate CloudFront cache
+        if: env.CURRENT_CF_ID != ''
+        run:
+          #...
