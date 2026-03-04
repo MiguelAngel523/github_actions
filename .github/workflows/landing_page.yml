@@ -15,7 +15,7 @@ jobs:
 
     # DEFINICIÓ DE VARIABLES D'ENTORN DINÀMIQUES MIG "INVENT" PER PODER USAR EL MATEIX WORKFLOW PER A DEV I PROD
     # Ací fem la "màgia" per decidir a quin bucket anem segons la branca actual
-    env:
+    env: 
       # amb github.ref_name podem saber de quia branca s'ha disparat l'event
       # Ternària: Si la branca és 'main', usa el bucket de PROD; si no, el de DEV
       CURRENT_S3_BUCKET: ${{ github.ref == 'refs/heads/main' && vars.S3_BUCKET_NAME_PROD || vars.S3_BUCKET_NAME_DEV }}
@@ -37,7 +37,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
+          aws-region: ${{ secrets.AWS_REGION }}
 
       # 3. Pugem els fitxers a S3
       # Crea una action propia utlitzant comandes AWS cli per sincronitzar el bucket S3.
@@ -45,13 +45,4 @@ jobs:
       # Evita pujar .git i .gitignore
       - name: Sync files to S3
         run: |
-          aws s3 sync ./FoodMap s3://${{ CURRENT_S3_BUCKET }} --delete
-          
-
-      # 4. Invalidem la memòria cau de CloudFront (Només si la variable té valor)
-      # Comprovem si la variable env.CURRENT_CF_ID no està buida abans d'executar la comanda d'invalidació, així evitem errors si per alguna raó no s'ha configurat correctament el CloudFront id.
-      # Utilitza la action amb AWS cli per invalidar la cache s3 i que CloudFront serveixi la web.
-      - name: Invalidate CloudFront cache
-        if: env.CURRENT_CF_ID != ''
-        run:
-          #...
+          aws s3 sync ./FoodMap s3://${{ env.CURRENT_S3_BUCKET }} --delete
